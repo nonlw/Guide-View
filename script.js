@@ -15,6 +15,90 @@ const svgNS = 'http://www.w3.org/2000/svg';
 let floorModel = null;
 let campusScene = null;
 
+const fallbackCampusData = {
+  id: 'minqi-area',
+  name: '民企区域',
+  ground: { width: 160, depth: 90 },
+  buildings: [
+    { id: 'building-5', name: '5栋', status: '1F 已建模', position: { x: 0, z: -15 }, size: { width: 28, depth: 18, height: 46 }, floors: 6, isPrimary: true },
+    { id: 'building-1', name: '1栋', status: '待接入楼层', position: { x: -50, z: 10 }, size: { width: 22, depth: 16, height: 34 }, floors: 5 },
+    { id: 'building-6', name: '6栋', status: '待接入楼层', position: { x: 50, z: 10 }, size: { width: 22, depth: 16, height: 34 }, floors: 5 },
+  ],
+  roads: [
+    { id: 'main-road', type: 'main', points: [{ x: 0, z: 45 }, { x: 0, z: -25 }], width: 8 },
+    { id: 'building-connection-road', type: 'pedestrian', points: [{ x: -50, z: 20 }, { x: 0, z: 0 }, { x: 50, z: 20 }], width: 4 },
+  ],
+  landscape: [
+    { id: 'entry-plaza', type: 'plaza', position: { x: 0, z: 24 }, size: { width: 36, depth: 14 } },
+    { id: 'green-left', type: 'green-belt', position: { x: -35, z: 32 }, size: { width: 30, depth: 8 } },
+    { id: 'green-right', type: 'green-belt', position: { x: 35, z: 32 }, size: { width: 30, depth: 8 } },
+    { id: 'parking-left', type: 'parking', position: { x: -65, z: 35 }, size: { width: 18, depth: 10 } },
+    { id: 'parking-right', type: 'parking', position: { x: 65, z: 35 }, size: { width: 18, depth: 10 } },
+  ],
+};
+
+const fallbackFloorData = {
+  id: 'minqi-building-5-1f',
+  name: '民企区域 5栋 1F',
+  buildingId: 'building-5',
+  floorId: '1F',
+  source: 'fallback',
+  cadUnderlay: 'assets/minqi-building-5-1f-cad.png',
+  size: { width: 180, depth: 75 },
+  slabPolygon: [
+    { x: -90, z: -36 }, { x: 90, z: -36 }, { x: 90, z: 34 },
+    { x: 70, z: 34 }, { x: 70, z: 29 }, { x: 24, z: 29 },
+    { x: 24, z: 35 }, { x: -90, z: 35 },
+  ],
+  walls: [
+    { id: 'outer-top', type: 'outer', start: { x: -90, z: -36 }, end: { x: 90, z: -36 }, height: 3, thickness: 0.5 },
+    { id: 'outer-left', type: 'outer', start: { x: -90, z: -36 }, end: { x: -90, z: 35 }, height: 3, thickness: 0.5 },
+    { id: 'outer-right', type: 'outer', start: { x: 90, z: -36 }, end: { x: 90, z: 34 }, height: 3, thickness: 0.5 },
+    { id: 'outer-bottom-left', type: 'outer', start: { x: -90, z: 35 }, end: { x: 24, z: 35 }, height: 3, thickness: 0.5 },
+    { id: 'outer-bottom-right', type: 'outer', start: { x: 24, z: 35 }, end: { x: 70, z: 35 }, height: 3, thickness: 0.5 },
+    { id: 'corridor-main', type: 'inner', start: { x: -84, z: 0 }, end: { x: 72, z: 0 }, height: 2.55, thickness: 0.3 },
+    { id: 'left-room-01', type: 'inner', start: { x: -72, z: -35 }, end: { x: -72, z: 18 }, height: 2.6, thickness: 0.28 },
+    { id: 'left-room-02', type: 'inner', start: { x: -58, z: -35 }, end: { x: -58, z: 28 }, height: 2.6, thickness: 0.28 },
+    { id: 'left-room-03', type: 'inner', start: { x: -42, z: 0 }, end: { x: -42, z: 25 }, height: 2.55, thickness: 0.28 },
+    { id: 'center-training-left', type: 'inner', start: { x: -18, z: 1 }, end: { x: -18, z: 28 }, height: 2.55, thickness: 0.28 },
+    { id: 'center-training-right', type: 'inner', start: { x: 28, z: 1 }, end: { x: 28, z: 28 }, height: 2.55, thickness: 0.28 },
+    { id: 'center-training-bottom', type: 'inner', start: { x: -12, z: 28 }, end: { x: 22, z: 28 }, height: 2.55, thickness: 0.28 },
+    { id: 'right-hall-left', type: 'inner', start: { x: 28, z: 0 }, end: { x: 28, z: 31 }, height: 2.6, thickness: 0.3 },
+    { id: 'right-hall-right', type: 'inner', start: { x: 72, z: 0 }, end: { x: 72, z: 32 }, height: 2.6, thickness: 0.3 },
+    { id: 'right-room-01', type: 'inner', start: { x: 42, z: -35 }, end: { x: 42, z: 0 }, height: 2.55, thickness: 0.28 },
+    { id: 'right-room-02', type: 'inner', start: { x: 58, z: -35 }, end: { x: 58, z: 0 }, height: 2.55, thickness: 0.28 },
+  ],
+  columns: [
+    { id: 'column-01', position: { x: -89, z: -35 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-02', position: { x: -45, z: -35 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-03', position: { x: -2, z: -35 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-04', position: { x: 38, z: -35 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-05', position: { x: 84, z: -35 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-06', position: { x: -89, z: 0 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-07', position: { x: -26, z: 0 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-08', position: { x: 12, z: 0 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-09', position: { x: 64, z: 0 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-10', position: { x: -89, z: 35 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+    { id: 'column-11', position: { x: 84, z: 34 }, size: { width: 1.1, depth: 1.1 }, height: 3 },
+  ],
+  zones: [
+    { id: 'left-office-zone', name: '左侧小房间区', type: 'office', polygon: [{ x: -86, z: -32 }, { x: -58, z: -32 }, { x: -58, z: -4 }, { x: -86, z: -4 }], color: '#3d9be9', opacity: 0.36 },
+    { id: 'left-traffic-zone', name: '左下交通/设备区', type: 'service', polygon: [{ x: -88, z: 2 }, { x: -60, z: 2 }, { x: -60, z: 22 }, { x: -88, z: 22 }], color: '#f2c84b', opacity: 0.32 },
+    { id: 'front-zone', name: '前台区域', type: 'public', polygon: [{ x: -42, z: 4 }, { x: -18, z: 4 }, { x: -18, z: 20 }, { x: -42, z: 20 }], color: '#e76767', opacity: 0.18 },
+    { id: 'training-zone', name: '中部培训/会议区', type: 'training', polygon: [{ x: -14, z: 2 }, { x: 26, z: 2 }, { x: 26, z: 27 }, { x: -14, z: 27 }], color: '#7bd88f', opacity: 0.34 },
+    { id: 'open-office-zone', name: '右侧大型办公区', type: 'office', polygon: [{ x: 32, z: 4 }, { x: 70, z: 4 }, { x: 70, z: 29 }, { x: 32, z: 29 }], color: '#8ecdf5', opacity: 0.33 },
+    { id: 'right-service-zone', name: '右下交通/设备区', type: 'service', polygon: [{ x: 74, z: 12 }, { x: 88, z: 12 }, { x: 88, z: 32 }, { x: 74, z: 32 }], color: '#f2c84b', opacity: 0.3 },
+  ],
+  verticalTraffic: [
+    { id: 'left-stair', type: 'stair', position: { x: -84, z: 24 } },
+    { id: 'center-stair', type: 'stair', position: { x: -8, z: 29 } },
+    { id: 'center-elevator-a', type: 'elevator', position: { x: 4, z: 27 } },
+    { id: 'center-elevator-b', type: 'elevator', position: { x: 11, z: 27 } },
+    { id: 'right-stair', type: 'stair', position: { x: 76, z: 27 } },
+    { id: 'right-elevator', type: 'elevator', position: { x: 82, z: 24 } },
+  ],
+};
+
 function setLayerVisibility(node, visible) {
   node.style.setProperty('opacity', visible ? '1' : '0', 'important');
   node.style.setProperty('visibility', visible ? 'visible' : 'hidden', 'important');
@@ -135,9 +219,15 @@ class CampusScene3D {
   }
 
   async load(url) {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Cannot load campus data: ${url}`);
-    this.data = await response.json();
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Cannot load campus data: ${url}`);
+      this.data = await response.json();
+    } catch (error) {
+      console.warn(error);
+      this.data = fallbackCampusData;
+      infoBar.textContent = '线上数据文件未加载，已使用内置园区模型。';
+    }
     this.render();
   }
 
@@ -410,9 +500,15 @@ class CADFloorModel3D {
   }
 
   async load(url) {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Cannot load floor data: ${url}`);
-    this.originalData = await response.json();
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Cannot load floor data: ${url}`);
+      this.originalData = await response.json();
+    } catch (error) {
+      console.warn(error);
+      this.originalData = this.clone(fallbackFloorData);
+      infoBar.textContent = '线上楼层数据文件未加载，已使用内置 5栋 1F 模型。';
+    }
     this.data = this.loadDraft() || this.clone(this.originalData);
     document.querySelector('.cad-underlay')?.setAttribute('src', this.data.cadUnderlay);
     this.render();
