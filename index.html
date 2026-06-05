@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>民企区域办公导视系统</title>
+  <link rel="stylesheet" href="styles.css?v=floor-shadow-remove-2" />
+</head>
+<body>
+  <div id="app" class="app stage-area">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div>
+          <h1>办公导视系统</h1>
+          <p>民企区域 · 3D 立体版</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div class="panel-title">区域</div>
+        <button class="nav-pill active" data-action="goArea">民企区域</button>
+        <button class="nav-pill muted">德意区域</button>
+        <button class="nav-pill muted">石岩区域</button>
+        <button class="nav-pill muted">坪山区域</button>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">办公楼</div>
+        <button class="building-btn" data-building="b1">1栋<span>待接入楼层</span></button>
+        <button class="building-btn primary" data-building="b5">5栋<span>已建 1F 3D</span></button>
+        <button class="building-btn" data-building="b6">6栋<span>待接入楼层</span></button>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">MVP Prototype</div>
+          <h2 id="viewTitle">民企区域 3D 总览</h2>
+        </div>
+        <div class="breadcrumb" id="breadcrumb">区域 / 民企区域</div>
+      </header>
+
+      <section class="viewport">
+        <div class="skyline-grid"></div>
+        <div class="scene" id="scene">
+          <div class="area-label">民企区域</div>
+          <button class="campus-reset" id="resetCampusView" type="button">重置视角</button>
+          <div class="campus-scene-root" id="campusSceneRoot" aria-label="民企区域办公园区鸟瞰图"></div>
+          <div class="campus-base" aria-hidden="true">
+            <div class="campus-road campus-road-main"></div>
+            <div class="campus-road campus-road-loop"></div>
+            <div class="campus-plot plot-1"></div>
+            <div class="campus-plot plot-5"></div>
+            <div class="campus-plot plot-6"></div>
+            <div class="campus-plaza plaza-main"></div>
+            <div class="campus-green green-left"></div>
+            <div class="campus-green green-right"></div>
+            <div class="campus-parking parking-left"></div>
+            <div class="campus-parking parking-right"></div>
+          </div>
+          <button class="tower3d tower-1" data-building="b1" aria-label="1栋">
+            <span class="tower-body"><i></i><b></b></span><strong>1栋</strong><em>待接入楼层</em>
+          </button>
+          <button class="tower3d tower-5 active" data-building="b5" aria-label="5栋">
+            <span class="tower-body"><i></i><b></b></span><strong>5栋</strong><em>1F 已建模</em>
+          </button>
+          <button class="tower3d tower-6" data-building="b6" aria-label="6栋">
+            <span class="tower-body"><i></i><b></b></span><strong>6栋</strong><em>待接入楼层</em>
+          </button>
+          <div class="road road-main"></div>
+          <div class="road road-sub"></div>
+        </div>
+
+        <div class="building-focus" id="buildingFocus" aria-hidden="true">
+          <div class="building-vertical">
+            <div class="roof-cap">5栋</div>
+            <div class="floor-slices" id="floorStack">
+              <button class="slice disabled"><span>6F</span><em>待接入</em></button>
+              <button class="slice disabled"><span>5F</span><em>待接入</em></button>
+              <button class="slice disabled"><span>4F</span><em>待接入</em></button>
+              <button class="slice disabled"><span>3F</span><em>待接入</em></button>
+              <button class="slice disabled"><span>2F</span><em>待接入</em></button>
+              <button class="slice available" data-floor="b5f1"><span>1F</span><em>办公低模</em></button>
+            </div>
+            <div class="building-base"></div>
+          </div>
+        </div>
+
+        <div class="floor-view" id="floorView" aria-hidden="true">
+          <div class="floor-toolbar">
+            <div>
+              <div class="eyebrow">5栋 / 1F</div>
+              <h3>楼层模型</h3>
+            </div>
+            <div class="tool-actions">
+              <button id="resetView" type="button">重置视角</button>
+              <button id="viewTop" type="button">俯视视角</button>
+              <button id="toggleEditor" type="button">编辑模型</button>
+              <button id="backToBuilding" type="button">返回楼栋</button>
+            </div>
+          </div>
+
+          <div class="model-shell floor-model-shell">
+            <div class="model-stage isometric" id="modelStage">
+              <img class="pdf-underlay cad-underlay" src="assets/minqi-building-5-1f-cad.png" alt="5栋1F CAD 对照底图" />
+              <div id="floorModel3D" class="floor-model-3d" aria-label="5栋1F 办公空间低模沙盘"></div>
+              <div id="floorTooltip" class="floor-tooltip" hidden></div>
+            </div>
+
+            <aside class="floor-info-panel" id="floorInfoPanel">
+              <div class="panel-kicker">Zone Detail</div>
+              <h3>选择一个功能区域</h3>
+              <p>悬停查看区域名称，点击后显示类型、说明和后续可补充字段。</p>
+              <dl>
+                <div><dt>类型</dt><dd>-</dd></div>
+                <div><dt>数据源</dt><dd>5栋 1F PDF 低模还原</dd></div>
+              </dl>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <footer class="infobar" id="infoBar"></footer>
+    </main>
+  </div>
+  <script src="script.js?v=floor-shadow-remove-2"></script>
+</body>
+</html>

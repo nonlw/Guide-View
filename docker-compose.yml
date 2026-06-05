@@ -1,0 +1,10 @@
+services:
+  minqi-guidance:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: minqi-guidance:local
+    container_name: minqi-guidance
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
