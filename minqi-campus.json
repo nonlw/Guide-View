@@ -1,0 +1,88 @@
+{
+  "id": "minqi-area",
+  "name": "民企区域",
+  "ground": {
+    "width": 160,
+    "depth": 90
+  },
+  "buildings": [
+    {
+      "id": "building-5",
+      "name": "5栋",
+      "status": "1F 已建模",
+      "position": { "x": 0, "z": -15 },
+      "size": { "width": 28, "depth": 18, "height": 46 },
+      "floors": 6,
+      "isPrimary": true
+    },
+    {
+      "id": "building-1",
+      "name": "1栋",
+      "status": "待接入楼层",
+      "position": { "x": -50, "z": 10 },
+      "size": { "width": 22, "depth": 16, "height": 34 },
+      "floors": 5
+    },
+    {
+      "id": "building-6",
+      "name": "6栋",
+      "status": "待接入楼层",
+      "position": { "x": 50, "z": 10 },
+      "size": { "width": 22, "depth": 16, "height": 34 },
+      "floors": 5
+    }
+  ],
+  "roads": [
+    {
+      "id": "main-road",
+      "type": "main",
+      "points": [
+        { "x": 0, "z": 45 },
+        { "x": 0, "z": -25 }
+      ],
+      "width": 8
+    },
+    {
+      "id": "building-connection-road",
+      "type": "pedestrian",
+      "points": [
+        { "x": -50, "z": 20 },
+        { "x": 0, "z": 0 },
+        { "x": 50, "z": 20 }
+      ],
+      "width": 4
+    }
+  ],
+  "landscape": [
+    {
+      "id": "entry-plaza",
+      "type": "plaza",
+      "position": { "x": 0, "z": 24 },
+      "size": { "width": 36, "depth": 14 }
+    },
+    {
+      "id": "green-left",
+      "type": "green-belt",
+      "position": { "x": -35, "z": 32 },
+      "size": { "width": 30, "depth": 8 }
+    },
+    {
+      "id": "green-right",
+      "type": "green-belt",
+      "position": { "x": 35, "z": 32 },
+      "size": { "width": 30, "depth": 8 }
+    },
+    {
+      "id": "parking-left",
+      "type": "parking",
+      "position": { "x": -65, "z": 35 },
+      "size": { "width": 18, "depth": 10 }
+    },
+    {
+      "id": "parking-right",
+      "type": "parking",
+      "position": { "x": 65, "z": 35 },
+      "size": { "width": 18, "depth": 10 }
+    }
+  ]
+}

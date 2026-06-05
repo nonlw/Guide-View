@@ -1,0 +1,40 @@
+{
+  "project": "Shokz Enterprise Office Wayfinding Prototype",
+  "currentArea": "民企区域",
+  "areas": [
+    {
+      "id": "minqi",
+      "name": "民企区域",
+      "description": "当前样板区域。已建立 1栋、5栋、6栋 三栋办公楼的导航入口。",
+      "buildings": [
+        {
+          "id": "b1",
+          "name": "1栋",
+          "status": "待接入楼层资料",
+          "floors": []
+        },
+        {
+          "id": "b5",
+          "name": "5栋",
+          "status": "已接入 1F PDF 平面图",
+          "floors": [
+            {
+              "id": "b5f1",
+              "name": "1F",
+              "source": "1F-平面图.pdf",
+              "image": "assets/building-5-1f-floorplan-crop.png",
+              "rawImage": "assets/building-5-1f-floorplan.png",
+              "tags": ["公共区域", "会议/培训", "办公区", "电梯/楼梯", "洗手间"]
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "name": "6栋",
+          "status": "待接入楼层资料",
+          "floors": []
+        }
+      ]
+    }
+  ]
+}
