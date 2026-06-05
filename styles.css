@@ -1997,6 +1997,364 @@ input {
   content: none !important;
 }
 
+/* Final mobile adaptation for GitHub Pages/mobile browsers. Keep this last. */
+@media (max-width: 900px) {
+  html,
+  body {
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+
+  .app {
+    display: block !important;
+    min-height: 100svh;
+  }
+
+  .sidebar {
+    position: relative !important;
+    z-index: 10;
+    display: block !important;
+    width: 100% !important;
+    max-height: none;
+    padding: 14px 14px 10px;
+    border-right: 0;
+    border-bottom: 1px solid #dfe3e8;
+    overflow: visible;
+  }
+
+  .brand {
+    margin-bottom: 12px;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .brand h1 {
+    font-size: 20px;
+  }
+
+  .brand p {
+    font-size: 12px;
+  }
+
+  .panel {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .panel-title {
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .nav-pill,
+  .building-btn {
+    height: 40px;
+    min-height: 40px;
+    margin: 5px 0;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .building-btn span {
+    font-size: 12px;
+  }
+
+  .main {
+    min-height: auto;
+  }
+
+  .topbar {
+    min-height: auto !important;
+    padding: 16px 18px 12px !important;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .topbar h2 {
+    max-width: 100%;
+    font-size: 26px;
+    line-height: 1.12;
+    word-break: keep-all;
+  }
+
+  .breadcrumb {
+    max-width: 44%;
+    text-align: right;
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  .viewport {
+    min-height: 620px;
+    height: calc(100svh - 238px);
+    margin: 0 10px 14px !important;
+    border-radius: 18px !important;
+  }
+
+  .area-label {
+    left: 18px;
+    top: 18px;
+    height: 42px;
+    padding: 0 18px;
+    font-size: 18px;
+  }
+
+  .campus-reset {
+    right: 14px !important;
+    top: 14px !important;
+    height: 36px;
+    padding: 0 14px;
+  }
+
+  .campus-scene-svg {
+    min-width: 760px;
+  }
+
+  .campus-scene-root {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .stage-building .scene {
+    overflow: hidden;
+  }
+
+  .stage-building .tower-5 {
+    left: 3% !important;
+    bottom: 7% !important;
+    transform: scale(.64) !important;
+    transform-origin: left bottom;
+  }
+
+  .stage-building .building-vertical {
+    left: 36% !important;
+    top: 10% !important;
+    width: 58vw !important;
+    height: 470px !important;
+  }
+
+  .stage-building .slice {
+    width: 54vw !important;
+    height: 48px !important;
+    padding: 0 14px !important;
+    border-radius: 11px;
+  }
+
+  .stage-building .slice span {
+    font-size: 20px !important;
+  }
+
+  .stage-building .slice em {
+    max-width: 58%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px !important;
+  }
+
+  .stage-floor .floor-view,
+  .app.stage-floor .floor-view {
+    position: relative !important;
+    inset: auto !important;
+    min-height: 760px !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .stage-floor .floor-toolbar {
+    min-height: auto !important;
+    padding: 14px 14px 10px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px;
+  }
+
+  .stage-floor .floor-toolbar h3 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .stage-floor .tool-actions {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding: 5px;
+  }
+
+  .stage-floor .tool-actions button {
+    width: auto !important;
+    height: 40px !important;
+    padding: 0 8px !important;
+    font-size: 13px;
+  }
+
+  .stage-floor .floor-model-shell,
+  .app.stage-floor .floor-model-shell {
+    height: auto !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 12px !important;
+    overflow: visible !important;
+    border-radius: 18px !important;
+  }
+
+  .stage-floor .model-stage,
+  .app.stage-floor .model-stage {
+    min-height: 430px !important;
+    height: 52svh !important;
+    overflow: auto !important;
+    border-radius: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .floor-model-3d {
+    min-width: 760px;
+    min-height: 430px;
+    transform-origin: center center;
+  }
+
+  .floor-model-3d svg {
+    width: 760px !important;
+    min-width: 760px !important;
+    height: 430px !important;
+  }
+
+  .floor-info-panel,
+  .app.stage-floor .floor-info-panel {
+    max-height: none !important;
+    min-height: 0 !important;
+    padding: 18px !important;
+    border-radius: 16px !important;
+    overflow: visible !important;
+  }
+
+  .floor-info-panel h3 {
+    font-size: 22px;
+  }
+
+  .floor-info-panel dl div {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .editor-field {
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .editor-actions {
+    grid-template-columns: 1fr !important;
+    position: static !important;
+    padding-top: 12px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .sidebar {
+    padding: 12px 10px 8px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand h1 {
+    font-size: 18px;
+  }
+
+  .panel {
+    padding: 9px;
+  }
+
+  .topbar {
+    display: block !important;
+  }
+
+  .topbar h2 {
+    margin-top: 4px;
+    font-size: 24px;
+  }
+
+  .breadcrumb {
+    max-width: none;
+    margin-top: 8px;
+    text-align: left;
+    font-size: 13px;
+  }
+
+  .viewport {
+    min-height: 560px;
+    height: calc(100svh - 286px);
+    margin: 0 8px 12px !important;
+  }
+
+  .campus-scene-svg {
+    min-width: 680px;
+  }
+
+  .stage-building .tower-5 {
+    left: -5% !important;
+    bottom: 5% !important;
+    transform: scale(.54) !important;
+  }
+
+  .stage-building .building-vertical {
+    left: 29% !important;
+    top: 11% !important;
+    width: 68vw !important;
+  }
+
+  .stage-building .slice {
+    width: 66vw !important;
+    height: 46px !important;
+  }
+
+  .stage-building .slice:nth-child(1) { top: 0 !important; transform: translateX(24px) !important; }
+  .stage-building .slice:nth-child(2) { top: 60px !important; transform: translateX(18px) !important; }
+  .stage-building .slice:nth-child(3) { top: 120px !important; transform: translateX(12px) !important; }
+  .stage-building .slice:nth-child(4) { top: 180px !important; transform: translateX(6px) !important; }
+  .stage-building .slice:nth-child(5) { top: 240px !important; transform: translateX(0) !important; }
+  .stage-building .slice:nth-child(6) { top: 300px !important; transform: translateX(-6px) !important; }
+
+  .stage-floor .model-stage,
+  .app.stage-floor .model-stage {
+    height: 48svh !important;
+    min-height: 360px !important;
+  }
+
+  .floor-model-3d {
+    min-width: 680px;
+    min-height: 380px;
+  }
+
+  .floor-model-3d svg {
+    width: 680px !important;
+    min-width: 680px !important;
+    height: 390px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .app.stage-floor .viewport {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .app.stage-floor .skyline-grid {
+    display: none;
+  }
+}
+
 /* Final override for the building drill-down page. */
 .stage-building .campus-scene-root,
 .stage-building .campus-reset,
